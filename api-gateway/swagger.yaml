@@ -1,0 +1,33 @@
+openapi: 3.0.0
+info:
+  title: SIM Order API
+  version: 1.0.0
+paths:
+  /api/sim-order:
+    post:
+      summary: Order a SIM
+      security:
+        - bearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                deliveryName: { type: string }
+                addressLine1: { type: string }
+                addressLine2: { type: string }
+                city: { type: string }
+                postalCode: { type: string }
+                country: { type: string }
+      responses:
+        '201': { description: SIM order placed }
+        '400': { description: Invalid request }
+        '401': { description: Unauthorized }
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
